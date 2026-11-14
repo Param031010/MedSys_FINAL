@@ -1,6 +1,7 @@
 <div align="center">
 
-# MedSysAI
+# MedSys AI
+### Integrating Hybrid Knowledge Graphs and Environmental Intelligence for Clinical Triage
 
 **A role-aware clinical platform where doctors and patients share one living medical record — grounded AI chat, specialty-routed medical models, OCR'd documents, symptom knowledge graphs, and care-finding, all behind real authentication.**
 
@@ -54,6 +55,14 @@ Most health software forces a choice: a patient app that knows nothing about the
 - Both talk to the same FastAPI backend, which owns all AI orchestration, OCR, retrieval, and storage.
 
 One React app, one API, two portals — chosen at sign-in and enforced on the server, not just hidden in the UI.
+
+### The research idea
+
+The project title names its two core ideas, and both are implemented end to end:
+
+- **Hybrid knowledge graphs.** A patient's record is modelled from several complementary stores rather than one: a **symptom knowledge graph** (Supermemory memories become nodes, with day-gap edges between them) that drives the Stable / Moderate / Serious status, a **vector index** (Pinecone) over the patient's own documents for grounded retrieval, and **structured clinical records** (MongoDB) for labs, vitals, medications and consultations. Chat answers draw on all three.
+- **Environmental intelligence.** Live **weather and air-quality** data (OpenWeather) is injected into the chat context and the Home dashboard, so triage-style guidance accounts for conditions like poor AQI or extreme heat instead of ignoring where the patient is.
+- **Clinical triage.** A negation-aware red-flag layer interrupts normal generation for emergencies and routes the user to 911 or the nearest ER; doctors get a severity-sorted priority queue.
 
 ### Design principles
 
