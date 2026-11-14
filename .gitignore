@@ -1,0 +1,32 @@
+# Claude Code session/config data — never publish this
+.claude/
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# Environment files (contain real API keys/secrets — never commit these)
+.env
+.env.local
+*.local
+!.env.example
+
+# Editor/OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.log
+
+# Local data, uploaded documents and model weights — never commit
+backend/medsys.db
+backend/medsys_backup.json
+backend/uploads/*
+!backend/uploads/.gitkeep
+Adapters/

@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/600-italic.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@theme {
+  --color-bg-mist: #efede7;
+  --color-ink: #1b2430;
+  --color-teal-deep: #2f6e68;
+  --color-indigo-thread: #5b5fef;
+  --color-clay-alert: #b5502e;
+  --color-stone: #7c7568;
+  --color-hairline: #dcd8ce;
+  --color-surface-card: #f8f7f3;
+
+  /* Warm, navy-tinted elevation scale — restyles every shadow-* utility app-wide */
+  --shadow-2xs: 0 1px 1px rgb(27 36 48 / 0.04);
+  --shadow-xs: 0 1px 2px rgb(27 36 48 / 0.05), 0 0 0 1px rgb(27 36 48 / 0.02);
+  --shadow-sm: 0 1px 3px rgb(27 36 48 / 0.06), 0 2px 8px -2px rgb(27 36 48 / 0.06);
+  --shadow-md: 0 4px 10px -2px rgb(27 36 48 / 0.07), 0 8px 24px -6px rgb(27 36 48 / 0.10);
+  --shadow-lg: 0 10px 24px -6px rgb(27 36 48 / 0.12), 0 20px 48px -12px rgb(27 36 48 / 0.14);
+
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-hairline);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--color-bg-mist);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  /* Polished controls: consistent motion + focus across buttons and fields */
+  button, a, select, input, textarea, [role="button"] {
+    transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  button:not(:disabled), [role="button"] { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  button:not(:disabled):active { transform: scale(0.98); }
+
+  input, select, textarea {
+    border-radius: 0.75rem;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.bg-transparent):focus,
+  select:focus,
+  textarea:not(.bg-transparent):focus {
+    outline: none;
+    border-color: var(--color-teal-deep);
+    box-shadow: 0 0 0 3px rgb(47 110 104 / 0.15);
+  }
+  ::placeholder { color: rgb(124 117 104 / 0.7); }
+
+  /* Slim, warm scrollbars */
+  * { scrollbar-width: thin; scrollbar-color: #cfc9bb transparent; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #cfc9bb; border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+  ::-webkit-scrollbar-thumb:hover { background: #b8b19f; background-clip: content-box; border: 2px solid transparent; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-teal-deep);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-teal-deep);
+    color: var(--color-bg-mist);
+  }
+}
+
+@layer utilities {
+  /* Shared surface recipe for any card-like container */
+  .surface {
+    background-color: var(--color-surface-card);
+    border: 1px solid var(--color-hairline);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-xs);
+  }
+  .surface-hover {
+    transition: box-shadow 180ms, border-color 180ms, transform 180ms;
+  }
+  .surface-hover:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgb(47 110 104 / 0.45);
+    transform: translateY(-1px);
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
